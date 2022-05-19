@@ -1,0 +1,37 @@
+apiVersion: skaffold/v2beta22
+kind: Config
+deploy:
+  kubectl:
+    manifests:
+      - ./infra/k8s/zookeeper-depl.yaml
+      - ./infra/k8s/kafka-depl.yaml
+build:
+  local:
+    push: false
+  # googleCloudBuild:
+  #   projectId: secure-racer-348221
+  # artifacts:
+  #   - image: melzohery/auth
+  #     context: auth
+  #     docker:
+  #       dockerfile: Dockerfile
+  #     sync:
+  #       manual:
+  #         - dest: .
+  #           src: './src/**/*.ts'
+  #   - image: melzohery/client
+  #     context: client
+  #     docker:
+  #       dockerfile: Dockerfile
+  #     sync:
+  #       manual:
+  #         - dest: .
+  #           src: '**/*.js'
+  #   - image: melzohery/tickets
+  #     context: tickets
+  #     docker:
+  #       dockerfile: Dockerfile
+  #     sync:
+  #       manual:
+  #         - dest: .
+  #           src: './src/**/*.ts'
