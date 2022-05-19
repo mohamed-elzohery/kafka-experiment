@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: producer
+  template:
+    metadata:
+      labels:
+        app: producer
+    spec:
+      containers:
+      - name: producer
+        image: melzohery/producer
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: producer-srv
+spec:
+  selector:
+    app: producer
+  ports:
+  - port: 5000
+    targetPort: 5000
+    name: producer
+    protocol: TCP
